@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Bots | Bots Discord Profissionais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0a0e2a;
+            --secondary: #121844;
+            --accent: #0066ff;
+            --accent-light: #3399ff;
+            --accent-glow: rgba(0, 102, 255, 0.3);
+            --whatsapp: #25D366;
+            --whatsapp-dark: #128C7E;
+            --text: #ffffff;
+            --text-secondary: #b0c7ff;
+            --card-bg: rgba(18, 24, 68, 0.7);
+            --card-border: rgba(0, 102, 255, 0.2);
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 102, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(51, 153, 255, 0.05) 0%, transparent 20%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header e Navegação */
+        header {
+            background-color: rgba(10, 14, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo i {
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .logo span {
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: white;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover:after, nav a.active:after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+            background: radial-gradient(circle at center, var(--accent) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, white, var(--accent-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        /* Seção de Recursos */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .feature-card:hover:before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0, 102, 255, 0.2);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(to bottom right, var(--secondary), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Seção de Planos */
+        .pricing {
+            padding: 100px 0;
+            background-color: rgba(10, 14, 42, 0.5);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px 30px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.2);
+        }
+
+        .pricing-card.popular:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-light);
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+        }
+
+        .plan-features li i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* Seção de Contato com WhatsApp */
+        .contact {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Botão WhatsApp Estilizado */
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: linear-gradient(to right, var(--whatsapp), var(--whatsapp-dark));
+            color: white;
+            text-decoration: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button:active {
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .whatsapp-button:hover:before {
+            left: 100%;
+        }
+
+        .whatsapp-icon {
+            width: 32px;
+            height: 32px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.507 14.307l-.009.075c-.405 1.244-2.699 2.239-3.819 2.363-1.125.126-2.016.083-3.938-.258-2.714-.478-5.508-2.505-5.508-7.351 0-4.03 3.288-7.136 7.363-7.136 4.075 0 7.362 3.107 7.362 7.136 0 2.033-.825 3.504-1.951 4.696-.562.592-1.215 1.088-1.902 1.475zm-5.462-12.44c-5.45 0-9.888 4.168-9.888 9.302 0 5.138 3.504 9.456 8.59 10.386l2.051.39-.614-2.016c-1.504.672-2.983 1.039-4.076 1.039-1.101 0-1.623-.24-2.057-.418-1.368-.562-2.326-1.573-2.923-2.7-1.037-1.979-.937-4.717.289-6.784.62-1.031 1.593-1.915 2.819-2.6 1.226-.688 2.702-1.066 4.271-1.066 1.569 0 3.045.378 4.271 1.066 1.226.685 2.199 1.569 2.819 2.6 1.226 2.067 1.326 4.805.289 6.784-.378.724-.914 1.385-1.579 1.954l.216.851c.084.331.16.624.16.811 0 .389-.214.743-.64.743-.181 0-.431-.084-.764-.167l-2.121-.596c-.996-.282-2.028-.678-2.922-1.167-.195.035-.414.053-.633.053-1.101 0-2.572-.367-4.076-1.039l-.422-.189-.442.144-2.016.614.39-2.051c.931-5.086 5.248-8.59 10.386-8.59 5.45 0 9.888 4.168 9.888 9.302 0 5.134-4.438 9.302-9.888 9.302z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        /* Contato alternativo */
+        .contact-alternative {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-alternative p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            background-color: rgba(10, 14, 42, 0.5);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background-color: rgba(0, 102, 255, 0.1);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(0, 102, 255, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent-light);
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(10, 14, 42, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .copyright a {
+            color: var(--accent-light);
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .copyright a:hover {
+            text-decoration: underline;
+        }
+
+        /* Floating de Aceitação de Termos - CORRIGIDO */
+        .terms-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary);
+            border: 1px solid var(--accent);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .terms-floating.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .terms-floating h3 {
+            color: var(--accent-light);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .terms-floating p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .terms-floating a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        .terms-floating a:hover {
+            text-decoration: underline;
+        }
+
+        .terms-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .terms-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .terms-btn.accept {
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            color: white;
+        }
+
+        .terms-btn.reject {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .terms-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .terms-btn.accept:hover {
+            background: linear-gradient(to right, var(--accent-light), var(--accent));
+        }
+
+        .close-terms {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-terms:hover {
+            color: white;
+        }
+
+        /* Páginas de Termos e Política - CORRIGIDO */
+        .policy-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .policy-page.active {
+            display: block;
+        }
+
+        .policy-content {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: var(--secondary);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid var(--accent);
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .policy-content h1 {
+            color: var(--accent-light);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .policy-content h2 {
+            color: var(--text);
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+        }
+
+        .policy-content p, .policy-content li {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .policy-content ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .close-policy {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-policy:hover {
+            color: white;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px) scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 200px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-container {
+                padding: 30px 20px;
+            }
+            
+            .whatsapp-button {
+                padding: 18px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .terms-floating {
+                max-width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 20px;
+            }
+            
+            .policy-content {
+                padding: 30px 20px;
+                margin: 20px auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .terms-actions {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animações */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            }
+            50% {
+                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            }
+            100% {
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            }
+        }
+
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Efeito de partículas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: var(--accent);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de partículas -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>NEXUS BOTS</span>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="active">Início</a></li>
+                        <li><a href="#features">Recursos</a></li>
+                        <li><a href="#pricing">Planos</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <a href="#pricing" class="cta-button">Comprar Agora</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <h1 class="floating">Bots Discord de Alta Performance</h1>
+            <p>Eleve sua comunidade Discord com nossos bots <span class="highlight">tecnológicos</span>, repletos de recursos avançados para moderação, diversão, utilidades e muito mais.</p>
+            <a href="#features" class="cta-button">Explorar Recursos</a>
+        </div>
+    </section>
+    
+    <!-- Recursos -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Recursos Avançados</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Moderação Inteligente</h3>
+                    <p>Sistema de moderação avançado com detecção automática de spam, palavras proibidas e proteção contra raids.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Música de Alta Qualidade</h3>
+                    <p>Reproduza músicas do YouTube, Spotify e SoundCloud com qualidade premium e sem interrupções.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Sistema de Jogos</h3>
+                    <p>Diversos jogos interativos para entreter sua comunidade, incluindo economia virtual e sistema de níveis.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Personalização Total</h3>
+                    <p>Configure cada aspecto do bot através de um painel web intuitivo, sem necessidade de conhecimentos técnicos.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Alta Performance</h3>
+                    <p>Infraestrutura robusta com 99.9% de uptime, suportando milhares de servidores simultaneamente.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte 24/7</h3>
+                    <p>Equipe de suporte especializada disponível a qualquer momento para resolver problemas e dúvidas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Planos -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Planos e Preços</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="plan-name">Básico</h3>
+                    <div class="plan-price">R$ 19,90<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Até 1.000 membros</li>
+                        <li><i class="fas fa-check"></i> Comandos de moderação</li>
+                        <li><i class="fas fa-check"></i> Sistema de leveling</li>
+                        <li><i class="fas fa-times"></i> Sistema de música</li>
+                        <li><i class="fas fa-times"></i> Jogos personalizados</li>
+                        <li><i class="fas fa-times"></i> Suporte prioritário</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Selecionar Plano</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-tag">MAIS POPULAR</div>
+                    <h3 class="plan-name">Profissional</h3>
+                    <div class="plan-price">R$ 39,90<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Até 10.000 membros</li>
+                        <li><i class="fas fa-check"></i> Comandos de moderação</li>
+                        <li><i class="fas fa-check"></i> Sistema de leveling</li>
+                        <li><i class="fas fa-check"></i> Sistema de música</li>
+                        <li><i class="fas fa-check"></i> Jogos personalizados</li>
+                        <li><i class="fas fa-times"></i> Suporte prioritário</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Selecionar Plano</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="plan-name">Enterprise</h3>
+                    <div class="plan-price">R$ 79,90<span>/mês</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Membros ilimitados</li>
+                        <li><i class="fas fa-check"></i> Comandos de moderação</li>
+                        <li><i class="fas fa-check"></i> Sistema de leveling</li>
+                        <li><i class="fas fa-check"></i> Sistema de música</li>
+                        <li><i class="fas fa-check"></i> Jogos personalizados</li>
+                        <li><i class="fas fa-check"></i> Suporte prioritário 24/7</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Selecionar Plano</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção de Contato com WhatsApp -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <p class="contact-subtitle">Tem dúvidas sobre nossos bots? Precisa de ajuda para escolher o plano ideal? Entre em contato conosco via WhatsApp para um atendimento rápido e personalizado!</p>
+            
+            <div class="contact-container">
+                <div class="floating">
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de mais informações sobre os bots Discord da Nexus Bots" class="whatsapp-button" target="_blank" id="whatsappBtn">
+                        <div class="whatsapp-icon"></div>
+                        <span>Fale Conosco no WhatsApp!</span>
+                    </a>
+                </div>
+                
+                <div class="contact-alternative">
+                    <p>Prefere outro canal de contato? Também estamos disponíveis através dos seguintes meios:</p>
+                    <div class="contact-links">
+                        <a href="mailto:contato@nexusbots.com" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>contato@nexusbots.com</span>
+                        </a>
+                        <a href="https://discord.gg/nexusbots" class="contact-link" target="_blank">
+                            <i class="fab fa-discord"></i>
+                            <span>Discord Server</span>
+                        </a>
+                        <a href="tel:+5511999999999" class="contact-link">
+                            <i class="fas fa-phone"></i>
+                            <span>(11) 99999-9999</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Nexus Bots</h3>
+                    <p>Fornecemos bots Discord de alta qualidade com tecnologia avançada para comunidades de todos os tamanhos.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <p><a href="#home">Início</a></p>
+                    <p><a href="#features">Recursos</a></p>
+                    <p><a href="#pricing">Planos</a></p>
+                    <p><a href="#contact">Contato</a></p>
+                </div>
+                
+                <!-- SEÇÃO DE HORÁRIOS RESTAURADA -->
+                <div class="footer-section">
+                    <h3>Horário de Atendimento</h3>
+                    <p><i class="fas fa-clock"></i> Segunda a Sexta: 9h às 18h</p>
+                    <p><i class="fas fa-clock"></i> Sábado: 9h às 13h</p>
+                    <p><i class="fas fa-headset"></i> WhatsApp: 24/7</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Nexus Bots. Todos os direitos reservados. | 
+                    <a href="#" id="showPolicyFooter">Política de Privacidade</a> | 
+                    <a href="#" id="showTermsFooter">Termos de Uso</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating de Aceitação de Termos -->
+    <div class="terms-floating" id="termsFloating">
+        <button class="close-terms" id="closeTerms">&times;</button>
+        <h3>Termos e Política de Privacidade</h3>
+        <p>Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossos <a href="#" id="showTermsFromFloat">Termos de Uso</a> e <a href="#" id="showPolicyFromFloat">Política de Privacidade</a>.</p>
+        <div class="terms-actions">
+            <button class="terms-btn accept" id="acceptTerms">Aceitar</button>
+            <button class="terms-btn reject" id="rejectTerms">Recusar</button>
+        </div>
+    </div>
+    
+    <!-- Página de Termos de Uso -->
+    <div class="policy-page" id="termsPage">
+        <div class="policy-content">
+            <button class="close-policy" id="closeTermsPage">&times;</button>
+            <h1>Termos de Uso</h1>
+            
+            <p><strong>Última atualização:</strong> 15 de novembro de 2023</p>
+            
+            <h2>1. Aceitação dos Termos</h2>
+            <p>Ao acessar e usar os serviços da Nexus Bots, você concorda em cumprir e estar vinculado a estes Termos de Uso. Se você não concordar com qualquer parte destes termos, não poderá acessar nossos serviços.</p>
+            
+            <h2>2. Descrição do Serviço</h2>
+            <p>A Nexus Bots fornece bots para Discord com diversas funcionalidades, incluindo moderação, entretenimento, utilidades e sistemas personalizados para comunidades.</p>
+            
+            <h2>3. Contas de Usuário</h2>
+            <p>Ao criar uma conta conosco, você garante que:
+                <ul>
+                    <li>Todas as informações fornecidas são verdadeiras, precisas e completas</li>
+                    <li>Você tem pelo menos 13 anos de idade</li>
+                    <li>Você não violou anteriormente nenhum destes Termos</li>
+                </ul>
+            </p>
+            
+            <h2>4. Pagamentos e Faturamento</h2>
+            <p>Os serviços da Nexus Bots são oferecidos sob planos de assinatura. Ao assinar um plano, você concorda em pagar as taxas aplicáveis no momento da compra e em intervalos recorrentes conforme sua assinatura.</p>
+            
+            <h2>5. Política de Reembolso</h2>
+            <p>Oferecemos reembolso dentro de 7 dias após a compra, desde que o serviço não tenha sido utilizado de forma significativa. Para solicitar reembolso, entre em contato com nosso suporte.</p>
+            
+            <h2>6. Limitações de Uso</h2>
+            <p>Você concorda em não:
+                <ul>
+                    <li>Usar nossos bots para atividades ilegais</li>
+                    <li>Tentar violar a segurança de nossos sistemas</li>
+                    <li>Usar nossos serviços para spam ou conteúdo ofensivo</li>
+                    <li>Distribuir ou revender nossos serviços sem autorização</li>
+                </ul>
+            </p>
+            
+            <h2>7. Modificações nos Termos</h2>
+            <p>Reservamo-nos o direito de modificar estes Termos a qualquer momento. Alterações significativas serão comunicadas por e-mail ou através de nossos canais oficiais.</p>
+            
+            <h2>8. Contato</h2>
+            <p>Para questões sobre estes Termos, entre em contato: contato@nexusbots.com</p>
+        </div>
+    </div>
+    
+    <!-- Página de Política de Privacidade -->
+    <div class="policy-page" id="policyPage">
+        <div class="policy-content">
+            <button class="close-policy" id="closePolicyPage">&times;</button>
+            <h1>Política de Privacidade</h1>
+            
+            <p><strong>Última atualização:</strong> 15 de novembro de 2023</p>
+            
+            <h2>1. Informações que Coletamos</h2>
+            <p>Coletamos informações quando você:
+                <ul>
+                    <li>Cria uma conta em nossa plataforma</li>
+                    <li>Realiza uma compra</li>
+                    <li>Entra em contato com nosso suporte</li>
+                    <li>Usa nossos bots no Discord</li>
+                </ul>
+            </p>
+            
+            <h2>2. Como Usamos Suas Informações</h2>
+            <p>Utilizamos suas informações para:
+                <ul>
+                    <li>Fornecer e melhorar nossos serviços</li>
+                    <li>Processar pagamentos e transações</li>
+                    <li>Enviar atualizações importantes sobre nossos serviços</li>
+                    <li>Fornecer suporte ao cliente</li>
+                </ul>
+            </p>
+            
+            <h2>3. Compartilhamento de Informações</h2>
+            <p>Não vendemos, comercializamos ou transferimos suas informações pessoais para terceiros, exceto nas seguintes circunstâncias:
+                <ul>
+                    <li>Provedores de serviços que nos auxiliam nas operações</li>
+                    <li>Cumprimento de obrigações legais</li>
+                    <li>Proteção de direitos, propriedade ou segurança</li>
+                </ul>
+            </p>
+            
+            <h2>4. Segurança de Dados</h2>
+            <p>Implementamos medidas de segurança para proteger suas informações pessoais contra acesso não autorizado, alteração, divulgação ou destruição.</p>
+            
+            <h2>5. Cookies</h2>
+            <p>Utilizamos cookies para melhorar sua experiência em nosso site. Cookies são pequenos arquivos armazenados em seu dispositivo que nos ajudam a lembrar suas preferências.</p>
+            
+            <h2>6. Seus Direitos</h2>
+            <p>Você tem o direito de:
+                <ul>
+                    <li>Acessar suas informações pessoais</li>
+                    <li>Corrigir informações imprecisas</li>
+                    <li>Solicitar a exclusão de seus dados</li>
+                    <li>Optar por não receber comunicações de marketing</li>
+                </ul>
+            </p>
+            
+            <h2>7. Alterações nesta Política</h2>
+            <p>Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos sobre alterações significativas através de nosso site ou por e-mail.</p>
+            
+            <h2>8. Contato</h2>
+            <p>Para questões sobre privacidade, entre em contato: privacidade@nexusbots.com</p>
+        </div>
+    </div>
+    
+    <!-- Página de Política de Cookies -->
+    <div class="policy-page" id="cookiesPage">
+        <div class="policy-content">
+            <button class="close-policy" id="closeCookiesPage">&times;</button>
+            <h1>Política de Cookies</h1>
+            
+            <p><strong>Última atualização:</strong> 15 de novembro de 2023</p>
+            
+            <h2>1. O que são Cookies?</h2>
+            <p>Cookies são pequenos arquivos de texto armazenados em seu dispositivo quando você visita nosso site. Eles nos ajudam a fornecer uma experiência personalizada e funcionalidades aprimoradas.</p>
+            
+            <h2>2. Tipos de Cookies que Usamos</h2>
+            <p>
+                <ul>
+                    <li><strong>Cookies Essenciais:</strong> Necessários para o funcionamento básico do site</li>
+                    <li><strong>Cookies de Desempenho:</strong> Coletam informações sobre como os visitantes usam nosso site</li>
+                    <li><strong>Cookies de Funcionalidade:</strong> Lembram suas preferências e escolhas</li>
+                    <li><strong>Cookies de Marketing:</strong> Usados para exibir anúncios relevantes</li>
+                </ul>
+            </p>
+            
+            <h2>3. Como Gerenciar Cookies</h2>
+            <p>Você pode controlar e/ou excluir cookies como desejar. Você pode excluir todos os cookies já armazenados em seu computador e configurar a maioria dos navegadores para impedir que sejam armazenados.</p>
+            
+            <h2>4. Cookies de Terceiros</h2>
+            <p>Alguns cookies podem ser definidos por serviços de terceiros que aparecem em nossas páginas. Não temos controle sobre esses cookies.</p>
+            
+            <h2>5. Consentimento</h2>
+            <p>Ao continuar usando nosso site, você concorda com o uso de cookies de acordo com esta política.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Navegação suave - CORRIGIDO
+        document.querySelectorAll('nav a, .cta-button[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // Impedir comportamento padrão apenas para âncoras que começam com #
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Atualizar navegação ativa
+                        document.querySelectorAll('nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                }
+            });
+        });
+        
+        // Configuração do WhatsApp
+        document.getElementById('whatsappBtn').addEventListener('click', function(e) {
+            if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                console.log('Abrindo WhatsApp Web para desktop...');
+            }
+        });
+        
+        // Gerenciamento do Floating de Termos - CORRIGIDO
+        const termsFloating = document.getElementById('termsFloating');
+        const acceptTermsBtn = document.getElementById('acceptTerms');
+        const rejectTermsBtn = document.getElementById('rejectTerms');
+        const closeTermsBtn = document.getElementById('closeTerms');
+        
+        // Verificar se já aceitou os termos
+        function checkTermsAccepted() {
+            return localStorage.getItem('termsAccepted') === 'true';
+        }
+        
+        // Mostrar floating após 3 segundos se ainda não aceitou
+        setTimeout(() => {
+            if (!checkTermsAccepted()) {
+                termsFloating.classList.add('show');
+            }
+        }, 3000);
+        
+        // Aceitar termos
+        acceptTermsBtn.addEventListener('click', () => {
+            localStorage.setItem('termsAccepted', 'true');
+            localStorage.setItem('termsAcceptDate', new Date().toISOString());
+            termsFloating.classList.remove('show');
+            // Remover alerta para melhor UX
+            // alert('Obrigado por aceitar nossos termos!');
+        });
+        
+        // Recusar termos
+        rejectTermsBtn.addEventListener('click', () => {
+            localStorage.setItem('termsAccepted', 'false');
+            termsFloating.classList.remove('show');
+            // Remover alerta para melhor UX
+            // alert('Você recusou os termos. Algumas funcionalidades podem ser limitadas.');
+        });
+        
+        // Fechar floating
+        closeTermsBtn.addEventListener('click', () => {
+            termsFloating.classList.remove('show');
+        });
+        
+        // Gerenciamento das páginas de política - CORRIGIDO
+        const termsPage = document.getElementById('termsPage');
+        const policyPage = document.getElementById('policyPage');
+        const cookiesPage = document.getElementById('cookiesPage');
+        
+        // Função para mostrar página e esconder outras
+        function showPolicyPage(page) {
+            // Esconder todas as páginas primeiro
+            [termsPage, policyPage, cookiesPage].forEach(p => p.classList.remove('active'));
+            // Mostrar a página solicitada
+            page.classList.add('active');
+            // Impedir rolagem do body
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Função para fechar todas as páginas
+        function closeAllPolicyPages() {
+            [termsPage, policyPage, cookiesPage].forEach(p => p.classList.remove('active'));
+            // Restaurar rolagem do body
+            document.body.style.overflow = '';
+        }
+        
+        // Botões para mostrar páginas - CORRIGIDO
+        document.getElementById('showTermsFooter').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPolicyPage(termsPage);
+        });
+        
+        document.getElementById('showPolicyFooter').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPolicyPage(policyPage);
+        });
+        
+        // Links do floating
+        document.getElementById('showTermsFromFloat').addEventListener('click', (e) => {
+            e.preventDefault();
+            termsFloating.classList.remove('show');
+            showPolicyPage(termsPage);
+        });
+        
+        document.getElementById('showPolicyFromFloat').addEventListener('click', (e) => {
+            e.preventDefault();
+            termsFloating.classList.remove('show');
+            showPolicyPage(policyPage);
+        });
+        
+        // Botões para fechar páginas - CORRIGIDO
+        document.getElementById('closeTermsPage').addEventListener('click', () => {
+            closeAllPolicyPages();
+        });
+        
+        document.getElementById('closePolicyPage').addEventListener('click', () => {
+            closeAllPolicyPages();
+        });
+        
+        document.getElementById('closeCookiesPage').addEventListener('click', () => {
+            closeAllPolicyPages();
+        });
+        
+        // Fechar páginas ao clicar fora do conteúdo - CORRIGIDO
+        [termsPage, policyPage, cookiesPage].forEach(page => {
+            page.addEventListener('click', (e) => {
+                if (e.target === page) {
+                    closeAllPolicyPages();
+                }
+            });
+        });
+        
+        // Fechar páginas com ESC - CORRIGIDO
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAllPolicyPages();
+            }
+        });
+        
+        // Criar partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for(let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                particle.style.opacity = Math.random() * 0.4 + 0.1;
+                
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Inicializar partículas quando a página carregar
+        window.addEventListener('load', createParticles);
+        
+        // Ativar link de navegação ativo ao rolar - CORRIGIDO
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if(pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Efeito de digitação no título - CORRIGIDO (desativado por conflito com animação)
+        // const heroTitle = document.querySelector('.hero h1');
+        // const originalText = heroTitle.textContent;
+        // heroTitle.textContent = '';
+        
+        // let i = 0;
+        // function typeWriter() {
+        //     if (i < originalText.length) {
+        //         heroTitle.textContent += originalText.charAt(i);
+        //         i++;
+        //         setTimeout(typeWriter, 50);
+        //     }
+        // }
+        
+        // Iniciar efeito de digitação após um breve delay
+        // setTimeout(typeWriter, 500);
+        
+        // Corrigir clique em links do footer que não são âncoras
+        document.querySelectorAll('footer a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if(!this.getAttribute('href').startsWith('#') && 
+                   !this.getAttribute('href').startsWith('http') &&
+                   !this.getAttribute('href').startsWith('mailto') &&
+                   !this.getAttribute('href').startsWith('tel')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+  </html>
