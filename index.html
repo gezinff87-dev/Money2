@@ -11,6 +11,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -533,11 +534,12 @@
             text-decoration: underline;
         }
 
-        /* Floating de Aceitação de Termos - CORRIGIDO */
+        /* Floating de Aceitação de Termos - MELHORADO PARA MOBILE */
         .terms-floating {
             position: fixed;
             bottom: 20px;
             right: 20px;
+            left: 20px;
             background-color: var(--secondary);
             border: 1px solid var(--accent);
             border-radius: 15px;
@@ -549,6 +551,8 @@
             opacity: 0;
             transition: all 0.5s ease;
             backdrop-filter: blur(10px);
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .terms-floating.show {
@@ -585,13 +589,15 @@
 
         .terms-btn {
             flex: 1;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
             font-size: 0.9rem;
+            min-height: 44px;
+            touch-action: manipulation;
         }
 
         .terms-btn.accept {
@@ -621,21 +627,22 @@
             background: none;
             border: none;
             color: var(--text-secondary);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.3s ease;
-            width: 24px;
-            height: 24px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
+            touch-action: manipulation;
         }
 
         .close-terms:hover {
             color: white;
         }
 
-        /* Páginas de Termos e Política - CORRIGIDO */
+        /* Páginas de Termos e Política - MELHORADO PARA MOBILE */
         .policy-page {
             display: none;
             position: fixed;
@@ -643,10 +650,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 10000;
             overflow-y: auto;
             padding: 20px;
+            -webkit-overflow-scrolling: touch;
         }
 
         .policy-page.active {
@@ -697,15 +705,296 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.3s ease;
-            width: 30px;
-            height: 30px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
+            touch-action: manipulation;
         }
 
         .close-policy:hover {
             color: white;
+        }
+
+        /* Botão Flutuante do Assistente AI - MELHORADO PARA MOBILE */
+        .ai-assistant-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0066ff, #3399ff);
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 9998;
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            touch-action: manipulation;
+            min-height: 60px;
+        }
+
+        .ai-assistant-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 102, 255, 0.6);
+        }
+
+        .ai-assistant-btn i {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .ai-assistant-btn:hover i {
+            transform: rotate(10deg);
+        }
+
+        .ai-assistant-btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+        }
+
+        .ai-assistant-btn:hover::after {
+            animation: shine 1.5s infinite;
+        }
+
+        /* Interface do Assistente AI - MELHORADO PARA MOBILE */
+        .ai-assistant-container {
+            position: fixed;
+            bottom: 160px;
+            right: 20px;
+            left: 20px;
+            width: calc(100% - 40px);
+            max-width: 400px;
+            height: 500px;
+            background: var(--secondary);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            z-index: 9997;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--accent);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            margin-left: auto;
+            margin-right: auto;
+            touch-action: manipulation;
+        }
+
+        .ai-assistant-container.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .ai-header {
+            background: linear-gradient(to right, var(--accent), var(--accent-light));
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 60px;
+        }
+
+        .ai-header h3 {
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-header h3 i {
+            font-size: 1.4rem;
+        }
+
+        .ai-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+        }
+
+        .ai-close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .ai-chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .ai-message {
+            max-width: 85%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+
+        .ai-message.user {
+            background: var(--accent);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .ai-message.bot {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .ai-input-container {
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .ai-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+            min-height: 50px;
+            -webkit-appearance: none;
+            touch-action: manipulation;
+        }
+
+        .ai-input:focus {
+            border-color: var(--accent);
+        }
+
+        .ai-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .ai-send-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            touch-action: manipulation;
+            min-height: 50px;
+        }
+
+        .ai-send-btn:hover {
+            background: var(--accent-light);
+            transform: scale(1.05);
+        }
+
+        .ai-typing {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            align-self: flex-start;
+            margin-bottom: 5px;
+        }
+
+        .ai-typing.active {
+            display: flex;
+        }
+
+        .ai-typing span {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .ai-typing span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .ai-typing span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .ai-info {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .ai-info a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        .ai-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Efeito de brilho no botão */
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Efeito de digitação */
+        @keyframes typing {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-5px);
+                opacity: 1;
+            }
         }
 
         /* Responsividade */
@@ -720,6 +1009,10 @@
             
             .pricing-card.popular:hover {
                 transform: translateY(-10px) scale(1);
+            }
+            
+            .ai-assistant-container {
+                max-width: 350px;
             }
         }
 
@@ -762,6 +1055,23 @@
                 padding: 30px 20px;
                 margin: 20px auto;
             }
+            
+            .ai-assistant-container {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 160px;
+                height: 450px;
+            }
+            
+            .ai-assistant-btn {
+                bottom: 100px;
+                right: 20px;
+            }
+            
+            .ai-input, .ai-send-btn {
+                min-height: 44px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -784,6 +1094,48 @@
             
             .footer-content {
                 grid-template-columns: 1fr;
+            }
+            
+            .ai-assistant-container {
+                height: 400px;
+                bottom: 140px;
+            }
+            
+            .ai-assistant-btn {
+                bottom: 80px;
+                width: 55px;
+                height: 55px;
+            }
+            
+            .policy-content {
+                padding: 20px 15px;
+                margin: 10px auto;
+            }
+            
+            .ai-message {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .ai-assistant-container {
+                height: 380px;
+                bottom: 120px;
+            }
+            
+            .ai-assistant-btn {
+                bottom: 70px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .ai-input {
+                font-size: 0.85rem;
+            }
+            
+            .terms-floating {
+                padding: 15px;
             }
         }
 
@@ -835,6 +1187,42 @@
 <body>
     <!-- Efeito de partículas -->
     <div class="particles" id="particles"></div>
+    
+    <!-- Botão Flutuante do Assistente AI -->
+    <button class="ai-assistant-btn" id="aiAssistantBtn">
+        <i class="fas fa-robot"></i>
+    </button>
+    
+    <!-- Interface do Assistente AI -->
+    <div class="ai-assistant-container" id="aiAssistantContainer">
+        <div class="ai-header">
+            <h3><i class="fas fa-robot"></i> Assistente Nexus AI</h3>
+            <button class="ai-close-btn" id="aiCloseBtn">&times;</button>
+        </div>
+        
+        <div class="ai-chat-container" id="aiChatContainer">
+            <div class="ai-message bot">
+                Olá! Eu sou o assistente AI da Nexus Bots. Como posso ajudar você hoje? Posso responder perguntas sobre nossos bots Discord, planos, recursos ou qualquer outra dúvida que você tenha!
+            </div>
+        </div>
+        
+        <div class="ai-typing" id="aiTyping">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="ai-input-container">
+            <input type="text" class="ai-input" id="aiInput" placeholder="Digite sua pergunta..." maxlength="500">
+            <button class="ai-send-btn" id="aiSendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        
+        <div class="ai-info">
+            Usando Google Gemini AI. <a href="#" id="clearChat">Limpar conversa</a>
+        </div>
+    </div>
     
     <!-- Header -->
     <header>
@@ -1180,26 +1568,23 @@
             <p><strong>Última atualização:</strong> 15 de novembro de 2023</p>
             
             <h2>1. O que são Cookies?</h2>
-            <p>Cookies são pequenos arquivos de texto armazenados em seu dispositivo quando você visita nosso site. Eles nos ajudam a fornecer uma experiência personalizada e funcionalidades aprimoradas.</p>
+            <p>Cookies são pequenos arquivos de texto armazenados em seu dispositivo quando você visita nosso site. Eletam que o serviço não tenha sido utilizado de forma significativa. Para solicitar reembolso, entre em contato com nosso suporte.</p>
             
-            <h2>2. Tipos de Cookies que Usamos</h2>
-            <p>
+            <h2>6. Limitações de Uso</h2>
+            <p>Você concorda em não:
                 <ul>
-                    <li><strong>Cookies Essenciais:</strong> Necessários para o funcionamento básico do site</li>
-                    <li><strong>Cookies de Desempenho:</strong> Coletam informações sobre como os visitantes usam nosso site</li>
-                    <li><strong>Cookies de Funcionalidade:</strong> Lembram suas preferências e escolhas</li>
-                    <li><strong>Cookies de Marketing:</strong> Usados para exibir anúncios relevantes</li>
+                    <li>Usar nossos bots para atividades ilegais</li>
+                    <li>Tentar violar a segurança de nossos sistemas</li>
+                    <li>Usar nossos serviços para spam ou conteúdo ofensivo</li>
+                    <li>Distribuir ou revender nossos serviços sem autorização</li>
                 </ul>
             </p>
             
-            <h2>3. Como Gerenciar Cookies</h2>
-            <p>Você pode controlar e/ou excluir cookies como desejar. Você pode excluir todos os cookies já armazenados em seu computador e configurar a maioria dos navegadores para impedir que sejam armazenados.</p>
+            <h2>7. Modificações nos Termos</h2>
+            <p>Reservamo-nos o direito de modificar estes Termos a qualquer momento. Alterações significativas serão comunicadas por e-mail ou através de nossos canais oficiais.</p>
             
-            <h2>4. Cookies de Terceiros</h2>
-            <p>Alguns cookies podem ser definidos por serviços de terceiros que aparecem em nossas páginas. Não temos controle sobre esses cookies.</p>
-            
-            <h2>5. Consentimento</h2>
-            <p>Ao continuar usando nosso site, você concorda com o uso de cookies de acordo com esta política.</p>
+            <h2>8. Contato</h2>
+            <p>Para questões sobre estes Termos, entre em contato: contato@nexusbots.com</p>
         </div>
     </div>
     
@@ -1238,7 +1623,7 @@
             }
         });
         
-        // Gerenciamento do Floating de Termos - CORRIGIDO
+        // Gerenciamento do Floating de Termos - CORRIGIDO PARA MOBILE
         const termsFloating = document.getElementById('termsFloating');
         const acceptTermsBtn = document.getElementById('acceptTerms');
         const rejectTermsBtn = document.getElementById('rejectTerms');
@@ -1261,16 +1646,12 @@
             localStorage.setItem('termsAccepted', 'true');
             localStorage.setItem('termsAcceptDate', new Date().toISOString());
             termsFloating.classList.remove('show');
-            // Remover alerta para melhor UX
-            // alert('Obrigado por aceitar nossos termos!');
         });
         
         // Recusar termos
         rejectTermsBtn.addEventListener('click', () => {
             localStorage.setItem('termsAccepted', 'false');
             termsFloating.classList.remove('show');
-            // Remover alerta para melhor UX
-            // alert('Você recusou os termos. Algumas funcionalidades podem ser limitadas.');
         });
         
         // Fechar floating
@@ -1278,7 +1659,7 @@
             termsFloating.classList.remove('show');
         });
         
-        // Gerenciamento das páginas de política - CORRIGIDO
+        // Gerenciamento das páginas de política - CORRIGIDO PARA MOBILE
         const termsPage = document.getElementById('termsPage');
         const policyPage = document.getElementById('policyPage');
         const cookiesPage = document.getElementById('cookiesPage');
@@ -1300,7 +1681,7 @@
             document.body.style.overflow = '';
         }
         
-        // Botões para mostrar páginas - CORRIGIDO
+        // Botões para mostrar páginas - CORRIGIDO PARA MOBILE
         document.getElementById('showTermsFooter').addEventListener('click', (e) => {
             e.preventDefault();
             showPolicyPage(termsPage);
@@ -1406,22 +1787,254 @@
             });
         });
         
-        // Efeito de digitação no título - CORRIGIDO (desativado por conflito com animação)
-        // const heroTitle = document.querySelector('.hero h1');
-        // const originalText = heroTitle.textContent;
-        // heroTitle.textContent = '';
+        // Código para o Assistente AI - CORRIGIDO PARA MOBILE
+        const aiAssistantBtn = document.getElementById('aiAssistantBtn');
+        const aiAssistantContainer = document.getElementById('aiAssistantContainer');
+        const aiCloseBtn = document.getElementById('aiCloseBtn');
+        const aiSendBtn = document.getElementById('aiSendBtn');
+        const aiInput = document.getElementById('aiInput');
+        const aiChatContainer = document.getElementById('aiChatContainer');
+        const aiTyping = document.getElementById('aiTyping');
+        const clearChatBtn = document.getElementById('clearChat');
         
-        // let i = 0;
-        // function typeWriter() {
-        //     if (i < originalText.length) {
-        //         heroTitle.textContent += originalText.charAt(i);
-        //         i++;
-        //         setTimeout(typeWriter, 50);
-        //     }
-        // }
+        // Chave da API do Gemini (SUBSTITUA PELA SUA CHAVE)
+        const GEMINI_API_KEY = 'SUA_CHAVE_API_AQUI';
         
-        // Iniciar efeito de digitação após um breve delay
-        // setTimeout(typeWriter, 500);
+        // URL da API do Gemini
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
+        
+        // Função para remover caracteres especiais
+        function removeSpecialCharacters(text) {
+            return text
+                .replace(/[^\w\s.,!?@#$%&*()-=+]/gi, '') // Remove caracteres especiais não desejados
+                .replace(/\s+/g, ' ') // Remove múltiplos espaços
+                .trim();
+        }
+        
+        // Função para formatar a resposta do bot
+        function formatBotResponse(text) {
+            // Remove caracteres especiais problemáticos
+            let cleanedText = removeSpecialCharacters(text);
+            
+            // Garante que a resposta seja relevante para o contexto
+            if (!cleanedText.includes('bot') && !cleanedText.includes('Discord') && 
+                !cleanedText.includes('Nexus') && !cleanedText.includes('servidor')) {
+                cleanedText = "Sobre bots Discord: " + cleanedText;
+            }
+            
+            // Limita o tamanho da resposta
+            if (cleanedText.length > 500) {
+                cleanedText = cleanedText.substring(0, 497) + "...";
+            }
+            
+            return cleanedText;
+        }
+        
+        // Abrir/fechar o assistente AI - CORRIGIDO PARA MOBILE
+        aiAssistantBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            aiAssistantContainer.classList.toggle('active');
+            if (aiAssistantContainer.classList.contains('active')) {
+                setTimeout(() => {
+                    aiInput.focus();
+                }, 300);
+            }
+        });
+        
+        aiCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            aiAssistantContainer.classList.remove('active');
+        });
+        
+        // Fechar assistente ao clicar fora (se necessário)
+        document.addEventListener('click', (e) => {
+            if (!aiAssistantContainer.contains(e.target) && 
+                !aiAssistantBtn.contains(e.target) && 
+                aiAssistantContainer.classList.contains('active')) {
+                aiAssistantContainer.classList.remove('active');
+            }
+        });
+        
+        // Prevenir propagação de clique dentro do container
+        aiAssistantContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+        
+        // Limpar conversa
+        clearChatBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Manter apenas a mensagem inicial do bot
+            const initialMessage = aiChatContainer.querySelector('.ai-message.bot');
+            aiChatContainer.innerHTML = '';
+            aiChatContainer.appendChild(initialMessage);
+        });
+        
+        // Função para adicionar mensagem ao chat
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `ai-message ${isUser ? 'user' : 'bot'}`;
+            messageDiv.textContent = text;
+            aiChatContainer.appendChild(messageDiv);
+            // Scroll suave para a última mensagem
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+        
+        // Função para mostrar/ocultar indicador de digitação
+        function showTypingIndicator(show) {
+            if (show) {
+                aiTyping.classList.add('active');
+            } else {
+                aiTyping.classList.remove('active');
+            }
+            // Scroll suave para o indicador de digitação
+            aiTyping.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+        
+        // Função para enviar mensagem para a API do Gemini (com fallback)
+        async function sendToGeminiAPI(userMessage) {
+            try {
+                // Se não houver chave de API, usar respostas locais
+                if (!GEMINI_API_KEY || GEMINI_API_KEY === 'SUA_CHAVE_API_AQUI') {
+                    return getLocalResponse(userMessage);
+                }
+                
+                // Contexto para o assistente
+                const context = `Você é um assistente virtual da Nexus Bots, uma empresa que fornece bots Discord de alta qualidade. 
+                Responda de forma amigável e útil às perguntas dos usuários sobre:
+                - Bots Discord em geral
+                - Recursos dos bots da Nexus (moderação, música, jogos, etc.)
+                - Planos de preços (Básico: R$19,90, Profissional: R$39,90, Enterprise: R$79,90)
+                - Como configurar e usar nossos bots
+                - Suporte técnico
+                - Informações de contato
+                - Qualquer outra pergunta relacionada a bots Discord
+                
+                Se a pergunta não for relacionada a bots Discord ou nossos serviços, responda educadamente que você é especializado em bots Discord.
+                
+                Pergunta do usuário: ${userMessage}`;
+                
+                const response = await fetch(GEMINI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: context
+                            }]
+                        }]
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                    const rawResponse = data.candidates[0].content.parts[0].text;
+                    return formatBotResponse(rawResponse);
+                } else {
+                    throw new Error('Resposta inesperada da API');
+                }
+                
+            } catch (error) {
+                console.error('Erro ao conectar com Gemini API:', error);
+                // Usar respostas locais em caso de erro
+                return getLocalResponse(userMessage);
+            }
+        }
+        
+        // Função para obter respostas locais (fallback)
+        function getLocalResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            // Respostas pré-definidas para perguntas comuns
+            if (lowerMessage.includes('preço') || lowerMessage.includes('quanto custa') || lowerMessage.includes('valor')) {
+                return "Temos 3 planos disponíveis: Básico por R$19,90/mês, Profissional por R$39,90/mês e Enterprise por R$79,90/mês. Cada plano oferece recursos diferentes para atender sua comunidade Discord.";
+            }
+            
+            if (lowerMessage.includes('recurso') || lowerMessage.includes('funcionalidade')) {
+                return "Nossos bots Discord incluem moderação inteligente, sistema de música de alta qualidade, jogos interativos, economia virtual, sistema de níveis e personalização total através de painel web.";
+            }
+            
+            if (lowerMessage.includes('moderação') || lowerMessage.includes('moderar')) {
+                return "O sistema de moderação dos nossos bots inclui detecção automática de spam, filtro de palavras proibidas, proteção contra raids, sistema de avisos e banimentos automáticos.";
+            }
+            
+            if (lowerMessage.includes('música') || lowerMessage.includes('tocar')) {
+                return "O sistema de música suporta YouTube, Spotify e SoundCloud com qualidade premium, filas de reprodução, equalizador e comandos de controle fáceis de usar.";
+            }
+            
+            if (lowerMessage.includes('contato') || lowerMessage.includes('suporte')) {
+                return "Você pode entrar em contato pelo WhatsApp (11) 99999-9999, email contato@nexusbots.com ou Discord discord.gg/nexusbots. Atendimento 24/7 pelo WhatsApp!";
+            }
+            
+            if (lowerMessage.includes('configurar') || lowerMessage.includes('instalar')) {
+                return "Para configurar nosso bot: 1) Adicione o bot ao seu servidor Discord 2) Acesse o painel web 3) Configure os módulos desejados 4) Personalize comandos. Não precisa de conhecimento técnico!";
+            }
+            
+            if (lowerMessage.includes('bot') || lowerMessage.includes('discord')) {
+                return "A Nexus Bots oferece bots Discord profissionais com alta performance, 99.9% de uptime e suporte técnico especializado. Nossos bots são ideais para comunidades de todos os tamanhos.";
+            }
+            
+            // Resposta genérica
+            const genericResponses = [
+                "Posso ajudar você com informações sobre nossos bots Discord, planos de preços, recursos e suporte técnico. O que você gostaria de saber?",
+                "Como assistente da Nexus Bots, posso responder suas perguntas sobre bots Discord, moderação, música, jogos e nossos planos disponíveis.",
+                "Estou aqui para ajudar com qualquer dúvida sobre nossos serviços de bots Discord. Você pode perguntar sobre recursos, preços ou como configurar o bot no seu servidor.",
+                "A Nexus Bots oferece soluções completas para comunidades Discord. Posso te informar sobre moderação inteligente, sistema de música, jogos e nossos planos acessíveis."
+            ];
+            
+            return genericResponses[Math.floor(Math.random() * genericResponses.length)];
+        }
+        
+        // Enviar mensagem quando clicar no botão
+        aiSendBtn.addEventListener('click', async () => {
+            const userMessage = aiInput.value.trim();
+            if (!userMessage) return;
+            
+            // Adicionar mensagem do usuário
+            addMessage(userMessage, true);
+            aiInput.value = '';
+            aiInput.blur(); // Remove foco do input no mobile
+            
+            // Mostrar indicador de digitação
+            showTypingIndicator(true);
+            
+            // Pequeno delay para parecer mais natural
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Obter resposta do Gemini ou fallback
+            const botResponse = await sendToGeminiAPI(userMessage);
+            
+            // Ocultar indicador de digitação
+            showTypingIndicator(false);
+            
+            // Adicionar resposta do bot
+            addMessage(botResponse, false);
+            
+            // Restaurar foco no input
+            setTimeout(() => {
+                aiInput.focus();
+            }, 100);
+        });
+        
+        // Enviar mensagem com Enter
+        aiInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                aiSendBtn.click();
+            }
+        });
+        
+        // Prevenir comportamento padrão de formulário no mobile
+        aiInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
         
         // Corrigir clique em links do footer que não são âncoras
         document.querySelectorAll('footer a').forEach(link => {
@@ -1434,6 +2047,23 @@
                 }
             });
         });
+        
+        // Efeito de animação no botão do assistente
+        setInterval(() => {
+            if (!aiAssistantContainer.classList.contains('active')) {
+                aiAssistantBtn.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    aiAssistantBtn.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }, 10000);
+        
+        // Corrigir problema de teclado virtual no mobile
+        window.addEventListener('resize', () => {
+            if (aiAssistantContainer.classList.contains('active')) {
+                aiChatContainer.scrollTop = aiChatContainer.scrollHeight;
+            }
+        });
     </script>
 </body>
-  </html>
+            </html>
