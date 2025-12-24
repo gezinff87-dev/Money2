@@ -11,7 +11,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -534,12 +533,11 @@
             text-decoration: underline;
         }
 
-        /* Floating de Aceitação de Termos - MELHORADO PARA MOBILE */
+        /* Floating de Aceitação de Termos - CORRIGIDO */
         .terms-floating {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            left: 20px;
             background-color: var(--secondary);
             border: 1px solid var(--accent);
             border-radius: 15px;
@@ -551,8 +549,6 @@
             opacity: 0;
             transition: all 0.5s ease;
             backdrop-filter: blur(10px);
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .terms-floating.show {
@@ -589,15 +585,13 @@
 
         .terms-btn {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
             font-size: 0.9rem;
-            min-height: 44px;
-            touch-action: manipulation;
         }
 
         .terms-btn.accept {
@@ -627,22 +621,21 @@
             background: none;
             border: none;
             color: var(--text-secondary);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: color 0.3s ease;
-            width: 44px;
-            height: 44px;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            touch-action: manipulation;
         }
 
         .close-terms:hover {
             color: white;
         }
 
-        /* Páginas de Termos e Política - MELHORADO PARA MOBILE */
+        /* Páginas de Termos e Política - CORRIGIDO */
         .policy-page {
             display: none;
             position: fixed;
@@ -650,11 +643,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.8);
             z-index: 10000;
             overflow-y: auto;
             padding: 20px;
-            -webkit-overflow-scrolling: touch;
         }
 
         .policy-page.active {
@@ -705,19 +697,18 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.3s ease;
-            width: 44px;
-            height: 44px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            touch-action: manipulation;
         }
 
         .close-policy:hover {
             color: white;
         }
 
-        /* Botão Flutuante do Assistente AI - MELHORADO PARA MOBILE */
+        /* Botão Flutuante do Assistente AI */
         .ai-assistant-btn {
             position: fixed;
             bottom: 90px;
@@ -736,8 +727,6 @@
             justify-content: center;
             transition: all 0.3s ease;
             overflow: hidden;
-            touch-action: manipulation;
-            min-height: 60px;
         }
 
         .ai-assistant-btn:hover {
@@ -767,15 +756,13 @@
             animation: shine 1.5s infinite;
         }
 
-        /* Interface do Assistente AI - MELHORADO PARA MOBILE */
+        /* Interface do Assistente AI */
         .ai-assistant-container {
             position: fixed;
             bottom: 160px;
             right: 20px;
-            left: 20px;
-            width: calc(100% - 40px);
-            max-width: 400px;
-            height: 500px;
+            width: 400px;
+            height: 600px;
             background: var(--secondary);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -787,9 +774,6 @@
             transform: translateY(20px);
             opacity: 0;
             transition: all 0.3s ease;
-            margin-left: auto;
-            margin-right: auto;
-            touch-action: manipulation;
         }
 
         .ai-assistant-container.active {
@@ -804,7 +788,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 60px;
         }
 
         .ai-header h3 {
@@ -826,12 +809,11 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: transform 0.3s ease;
-            width: 44px;
-            height: 44px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            touch-action: manipulation;
         }
 
         .ai-close-btn:hover {
@@ -845,7 +827,6 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            -webkit-overflow-scrolling: touch;
         }
 
         .ai-message {
@@ -855,8 +836,6 @@
             line-height: 1.4;
             font-size: 0.95rem;
             word-wrap: break-word;
-            word-break: break-word;
-            white-space: pre-wrap;
         }
 
         .ai-message.user {
@@ -878,7 +857,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             gap: 10px;
-            align-items: center;
         }
 
         .ai-input {
@@ -891,9 +869,6 @@
             font-size: 0.95rem;
             outline: none;
             transition: border-color 0.3s ease;
-            min-height: 50px;
-            -webkit-appearance: none;
-            touch-action: manipulation;
         }
 
         .ai-input:focus {
@@ -905,8 +880,8 @@
         }
 
         .ai-send-btn {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: var(--accent);
             color: white;
@@ -916,9 +891,6 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            flex-shrink: 0;
-            touch-action: manipulation;
-            min-height: 50px;
         }
 
         .ai-send-btn:hover {
@@ -1012,7 +984,8 @@
             }
             
             .ai-assistant-container {
-                max-width: 350px;
+                width: 350px;
+                height: 500px;
             }
         }
 
@@ -1068,10 +1041,6 @@
                 bottom: 100px;
                 right: 20px;
             }
-            
-            .ai-input, .ai-send-btn {
-                min-height: 44px;
-            }
         }
 
         @media (max-width: 576px) {
@@ -1098,44 +1067,6 @@
             
             .ai-assistant-container {
                 height: 400px;
-                bottom: 140px;
-            }
-            
-            .ai-assistant-btn {
-                bottom: 80px;
-                width: 55px;
-                height: 55px;
-            }
-            
-            .policy-content {
-                padding: 20px 15px;
-                margin: 10px auto;
-            }
-            
-            .ai-message {
-                font-size: 0.9rem;
-                padding: 10px 12px;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .ai-assistant-container {
-                height: 380px;
-                bottom: 120px;
-            }
-            
-            .ai-assistant-btn {
-                bottom: 70px;
-                width: 50px;
-                height: 50px;
-            }
-            
-            .ai-input {
-                font-size: 0.85rem;
-            }
-            
-            .terms-floating {
-                padding: 15px;
             }
         }
 
@@ -1568,23 +1499,26 @@
             <p><strong>Última atualização:</strong> 15 de novembro de 2023</p>
             
             <h2>1. O que são Cookies?</h2>
-            <p>Cookies são pequenos arquivos de texto armazenados em seu dispositivo quando você visita nosso site. Eletam que o serviço não tenha sido utilizado de forma significativa. Para solicitar reembolso, entre em contato com nosso suporte.</p>
+            <p>Cookies são pequenos arquivos de texto armazenados em seu dispositivo quando você visita nosso site. Eles nos ajudam a fornecer uma experiência personalizada e funcionalidades aprimoradas.</p>
             
-            <h2>6. Limitações de Uso</h2>
-            <p>Você concorda em não:
+            <h2>2. Tipos de Cookies que Usamos</h2>
+            <p>
                 <ul>
-                    <li>Usar nossos bots para atividades ilegais</li>
-                    <li>Tentar violar a segurança de nossos sistemas</li>
-                    <li>Usar nossos serviços para spam ou conteúdo ofensivo</li>
-                    <li>Distribuir ou revender nossos serviços sem autorização</li>
+                    <li><strong>Cookies Essenciais:</strong> Necessários para o funcionamento básico do site</li>
+                    <li><strong>Cookies de Desempenho:</strong> Coletam informações sobre como os visitantes usam nosso site</li>
+                    <li><strong>Cookies de Funcionalidade:</strong> Lembram suas preferências e escolhas</li>
+                    <li><strong>Cookies de Marketing:</strong> Usados para exibir anúncios relevantes</li>
                 </ul>
             </p>
             
-            <h2>7. Modificações nos Termos</h2>
-            <p>Reservamo-nos o direito de modificar estes Termos a qualquer momento. Alterações significativas serão comunicadas por e-mail ou através de nossos canais oficiais.</p>
+            <h2>3. Como Gerenciar Cookies</h2>
+            <p>Você pode controlar e/ou excluir cookies como desejar. Você pode excluir todos os cookies já armazenados em seu computador e configurar a maioria dos navegadores para impedir que sejam armazenados.</p>
             
-            <h2>8. Contato</h2>
-            <p>Para questões sobre estes Termos, entre em contato: contato@nexusbots.com</p>
+            <h2>4. Cookies de Terceiros</h2>
+            <p>Alguns cookies podem ser definidos por serviços de terceiros que aparecem em nossas páginas. Não temos controle sobre esses cookies.</p>
+            
+            <h2>5. Consentimento</h2>
+            <p>Ao continuar usando nosso site, você concorda com o uso de cookies de acordo com esta política.</p>
         </div>
     </div>
     
@@ -1623,7 +1557,7 @@
             }
         });
         
-        // Gerenciamento do Floating de Termos - CORRIGIDO PARA MOBILE
+        // Gerenciamento do Floating de Termos - CORRIGIDO
         const termsFloating = document.getElementById('termsFloating');
         const acceptTermsBtn = document.getElementById('acceptTerms');
         const rejectTermsBtn = document.getElementById('rejectTerms');
@@ -1646,12 +1580,16 @@
             localStorage.setItem('termsAccepted', 'true');
             localStorage.setItem('termsAcceptDate', new Date().toISOString());
             termsFloating.classList.remove('show');
+            // Remover alerta para melhor UX
+            // alert('Obrigado por aceitar nossos termos!');
         });
         
         // Recusar termos
         rejectTermsBtn.addEventListener('click', () => {
             localStorage.setItem('termsAccepted', 'false');
             termsFloating.classList.remove('show');
+            // Remover alerta para melhor UX
+            // alert('Você recusou os termos. Algumas funcionalidades podem ser limitadas.');
         });
         
         // Fechar floating
@@ -1659,7 +1597,7 @@
             termsFloating.classList.remove('show');
         });
         
-        // Gerenciamento das páginas de política - CORRIGIDO PARA MOBILE
+        // Gerenciamento das páginas de política - CORRIGIDO
         const termsPage = document.getElementById('termsPage');
         const policyPage = document.getElementById('policyPage');
         const cookiesPage = document.getElementById('cookiesPage');
@@ -1681,7 +1619,7 @@
             document.body.style.overflow = '';
         }
         
-        // Botões para mostrar páginas - CORRIGIDO PARA MOBILE
+        // Botões para mostrar páginas - CORRIGIDO
         document.getElementById('showTermsFooter').addEventListener('click', (e) => {
             e.preventDefault();
             showPolicyPage(termsPage);
@@ -1787,7 +1725,7 @@
             });
         });
         
-        // Código para o Assistente AI - CORRIGIDO PARA MOBILE
+        // Código para o Assistente AI
         const aiAssistantBtn = document.getElementById('aiAssistantBtn');
         const aiAssistantContainer = document.getElementById('aiAssistantContainer');
         const aiCloseBtn = document.getElementById('aiCloseBtn');
@@ -1803,46 +1741,15 @@
         // URL da API do Gemini
         const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
         
-        // Função para remover caracteres especiais
-        function removeSpecialCharacters(text) {
-            return text
-                .replace(/[^\w\s.,!?@#$%&*()-=+]/gi, '') // Remove caracteres especiais não desejados
-                .replace(/\s+/g, ' ') // Remove múltiplos espaços
-                .trim();
-        }
-        
-        // Função para formatar a resposta do bot
-        function formatBotResponse(text) {
-            // Remove caracteres especiais problemáticos
-            let cleanedText = removeSpecialCharacters(text);
-            
-            // Garante que a resposta seja relevante para o contexto
-            if (!cleanedText.includes('bot') && !cleanedText.includes('Discord') && 
-                !cleanedText.includes('Nexus') && !cleanedText.includes('servidor')) {
-                cleanedText = "Sobre bots Discord: " + cleanedText;
-            }
-            
-            // Limita o tamanho da resposta
-            if (cleanedText.length > 500) {
-                cleanedText = cleanedText.substring(0, 497) + "...";
-            }
-            
-            return cleanedText;
-        }
-        
-        // Abrir/fechar o assistente AI - CORRIGIDO PARA MOBILE
-        aiAssistantBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
+        // Abrir/fechar o assistente AI
+        aiAssistantBtn.addEventListener('click', () => {
             aiAssistantContainer.classList.toggle('active');
             if (aiAssistantContainer.classList.contains('active')) {
-                setTimeout(() => {
-                    aiInput.focus();
-                }, 300);
+                aiInput.focus();
             }
         });
         
-        aiCloseBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
+        aiCloseBtn.addEventListener('click', () => {
             aiAssistantContainer.classList.remove('active');
         });
         
@@ -1853,11 +1760,6 @@
                 aiAssistantContainer.classList.contains('active')) {
                 aiAssistantContainer.classList.remove('active');
             }
-        });
-        
-        // Prevenir propagação de clique dentro do container
-        aiAssistantContainer.addEventListener('click', (e) => {
-            e.stopPropagation();
         });
         
         // Limpar conversa
@@ -1875,8 +1777,7 @@
             messageDiv.className = `ai-message ${isUser ? 'user' : 'bot'}`;
             messageDiv.textContent = text;
             aiChatContainer.appendChild(messageDiv);
-            // Scroll suave para a última mensagem
-            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            aiChatContainer.scrollTop = aiChatContainer.scrollHeight;
         }
         
         // Função para mostrar/ocultar indicador de digitação
@@ -1886,18 +1787,12 @@
             } else {
                 aiTyping.classList.remove('active');
             }
-            // Scroll suave para o indicador de digitação
-            aiTyping.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            aiChatContainer.scrollTop = aiChatContainer.scrollHeight;
         }
         
-        // Função para enviar mensagem para a API do Gemini (com fallback)
+        // Função para enviar mensagem para a API do Gemini
         async function sendToGeminiAPI(userMessage) {
             try {
-                // Se não houver chave de API, usar respostas locais
-                if (!GEMINI_API_KEY || GEMINI_API_KEY === 'SUA_CHAVE_API_AQUI') {
-                    return getLocalResponse(userMessage);
-                }
-                
                 // Contexto para o assistente
                 const context = `Você é um assistente virtual da Nexus Bots, uma empresa que fornece bots Discord de alta qualidade. 
                 Responda de forma amigável e útil às perguntas dos usuários sobre:
@@ -1934,61 +1829,24 @@
                 const data = await response.json();
                 
                 if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                    const rawResponse = data.candidates[0].content.parts[0].text;
-                    return formatBotResponse(rawResponse);
+                    return data.candidates[0].content.parts[0].text;
                 } else {
                     throw new Error('Resposta inesperada da API');
                 }
                 
             } catch (error) {
                 console.error('Erro ao conectar com Gemini API:', error);
-                // Usar respostas locais em caso de erro
-                return getLocalResponse(userMessage);
+                
+                // Respostas de fallback caso a API não funcione
+                const fallbackResponses = [
+                    "Desculpe, estou tendo dificuldades técnicas no momento. Você pode me perguntar sobre nossos bots Discord: temos planos desde R$19,90/mês com recursos de moderação, música e jogos!",
+                    "Parece que há um problema com minha conexão. Enquanto isso, posso te dizer que a Nexus Bots oferece bots Discord com até 99.9% de uptime e suporte 24/7!",
+                    "No momento não consigo acessar meus recursos completos. Que tal visitar nossa seção de planos para ver os preços ou entrar em contato pelo WhatsApp para mais informações?",
+                    "Estou com problemas para processar sua pergunta. Você pode me perguntar sobre: moderação inteligente, música de alta qualidade, sistema de jogos ou planos de preços dos nossos bots Discord!"
+                ];
+                
+                return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
             }
-        }
-        
-        // Função para obter respostas locais (fallback)
-        function getLocalResponse(userMessage) {
-            const lowerMessage = userMessage.toLowerCase();
-            
-            // Respostas pré-definidas para perguntas comuns
-            if (lowerMessage.includes('preço') || lowerMessage.includes('quanto custa') || lowerMessage.includes('valor')) {
-                return "Temos 3 planos disponíveis: Básico por R$19,90/mês, Profissional por R$39,90/mês e Enterprise por R$79,90/mês. Cada plano oferece recursos diferentes para atender sua comunidade Discord.";
-            }
-            
-            if (lowerMessage.includes('recurso') || lowerMessage.includes('funcionalidade')) {
-                return "Nossos bots Discord incluem moderação inteligente, sistema de música de alta qualidade, jogos interativos, economia virtual, sistema de níveis e personalização total através de painel web.";
-            }
-            
-            if (lowerMessage.includes('moderação') || lowerMessage.includes('moderar')) {
-                return "O sistema de moderação dos nossos bots inclui detecção automática de spam, filtro de palavras proibidas, proteção contra raids, sistema de avisos e banimentos automáticos.";
-            }
-            
-            if (lowerMessage.includes('música') || lowerMessage.includes('tocar')) {
-                return "O sistema de música suporta YouTube, Spotify e SoundCloud com qualidade premium, filas de reprodução, equalizador e comandos de controle fáceis de usar.";
-            }
-            
-            if (lowerMessage.includes('contato') || lowerMessage.includes('suporte')) {
-                return "Você pode entrar em contato pelo WhatsApp (11) 99999-9999, email contato@nexusbots.com ou Discord discord.gg/nexusbots. Atendimento 24/7 pelo WhatsApp!";
-            }
-            
-            if (lowerMessage.includes('configurar') || lowerMessage.includes('instalar')) {
-                return "Para configurar nosso bot: 1) Adicione o bot ao seu servidor Discord 2) Acesse o painel web 3) Configure os módulos desejados 4) Personalize comandos. Não precisa de conhecimento técnico!";
-            }
-            
-            if (lowerMessage.includes('bot') || lowerMessage.includes('discord')) {
-                return "A Nexus Bots oferece bots Discord profissionais com alta performance, 99.9% de uptime e suporte técnico especializado. Nossos bots são ideais para comunidades de todos os tamanhos.";
-            }
-            
-            // Resposta genérica
-            const genericResponses = [
-                "Posso ajudar você com informações sobre nossos bots Discord, planos de preços, recursos e suporte técnico. O que você gostaria de saber?",
-                "Como assistente da Nexus Bots, posso responder suas perguntas sobre bots Discord, moderação, música, jogos e nossos planos disponíveis.",
-                "Estou aqui para ajudar com qualquer dúvida sobre nossos serviços de bots Discord. Você pode perguntar sobre recursos, preços ou como configurar o bot no seu servidor.",
-                "A Nexus Bots oferece soluções completas para comunidades Discord. Posso te informar sobre moderação inteligente, sistema de música, jogos e nossos planos acessíveis."
-            ];
-            
-            return genericResponses[Math.floor(Math.random() * genericResponses.length)];
         }
         
         // Enviar mensagem quando clicar no botão
@@ -1999,15 +1857,11 @@
             // Adicionar mensagem do usuário
             addMessage(userMessage, true);
             aiInput.value = '';
-            aiInput.blur(); // Remove foco do input no mobile
             
             // Mostrar indicador de digitação
             showTypingIndicator(true);
             
-            // Pequeno delay para parecer mais natural
-            await new Promise(resolve => setTimeout(resolve, 800));
-            
-            // Obter resposta do Gemini ou fallback
+            // Obter resposta do Gemini
             const botResponse = await sendToGeminiAPI(userMessage);
             
             // Ocultar indicador de digitação
@@ -2015,24 +1869,12 @@
             
             // Adicionar resposta do bot
             addMessage(botResponse, false);
-            
-            // Restaurar foco no input
-            setTimeout(() => {
-                aiInput.focus();
-            }, 100);
         });
         
         // Enviar mensagem com Enter
         aiInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 aiSendBtn.click();
-            }
-        });
-        
-        // Prevenir comportamento padrão de formulário no mobile
-        aiInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
             }
         });
         
@@ -2057,13 +1899,6 @@
                 }, 300);
             }
         }, 10000);
-        
-        // Corrigir problema de teclado virtual no mobile
-        window.addEventListener('resize', () => {
-            if (aiAssistantContainer.classList.contains('active')) {
-                aiChatContainer.scrollTop = aiChatContainer.scrollHeight;
-            }
-        });
     </script>
 </body>
-            </html>
+                                                            </html>
